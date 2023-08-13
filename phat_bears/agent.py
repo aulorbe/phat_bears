@@ -1,15 +1,13 @@
 from langchain.vectorstores import Weaviate
-import weaviate
-
 from langchain.chat_models import ChatOpenAI
+
+import weaviate
 
 
 if __name__ == "__main__":
     client = weaviate.Client(
         url="http://0.0.0.0:8080",
-        additional_headers={
-            "X-Openai-Api-Key": ""
-        },
+        additional_headers={"X-Openai-Api-Key": ""},
     )
     llm = ChatOpenAI(
         temperature=0,
@@ -28,6 +26,6 @@ if __name__ == "__main__":
         llm=llm, retriever=retriever, memory=memory
     )
     query = "Who is Otis"
-    result = qa({"question": query})['answer']
+    result = qa({"question": query})["answer"]
 
-    print('hi')
+    print("hi")
