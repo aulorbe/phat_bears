@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Search App</title>
+</head>
+<body>
+    <h1>Ask anything about Katmai's Fat Bears!</h1>
+    <form action="{{ url_for('search_results') }}" method="GET">
+        <input type="text" name="query" placeholder="Enter your question">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result %}
+        <h2>Answer for "{{ query }}"</h2>
+        <ul> {{ result }} </ul>
+    {% endif %}
+</body>
+</html>
