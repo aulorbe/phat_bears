@@ -19,32 +19,32 @@ if __name__ == "__main__":
     # -----------------------------------------
     # | Parse official 2022 PDF (extract text)|
     # -----------------------------------------
-    if not os.path.exists("../data_sources/bears_of_brooks_river_2022.pdf"):
-        url = "https://irma.nps.gov/DataStore/DownloadFile/671923"
-
-        # download locally:
-        urlretrieve(url, "../data_sources/bears_of_brooks_river_2022.pdf")
-
-        # ocr content:
-        ocrmypdf.ocr(
-            "../data_sources/bears_of_brooks_river_2022.pdf",
-            "../data_sources/bears_of_brooks_river_2022_ocred.pdf",
-            force_ocr=True,
-            output_type="pdf",
-            progress_bar=True,
-        )
-
-    # Load OCRed PDF
-    pdf = PyPDFLoader("../data_sources/bears_of_brooks_river_2022_ocred.pdf").load()
-
-    pages_of_general_info = pdf[4:28] + [pdf[34]]
-    cleaned_pages_of_general_info = [
-        page.page_content.replace("\n", "") for page in pages_of_general_info
-    ]
-    with open(
-        "../scraped_data/general_park_info.json", mode="w", encoding="utf-8"
-    ) as json_file:
-        json.dump(cleaned_pages_of_general_info, json_file)
+    # if not os.path.exists("../data_sources/bears_of_brooks_river_2022.pdf"):
+    #     url = "https://irma.nps.gov/DataStore/DownloadFile/671923"
+    #
+    #     # download locally:
+    #     urlretrieve(url, "../data_sources/bears_of_brooks_river_2022.pdf")
+    #
+    #     # ocr content:
+    #     ocrmypdf.ocr(
+    #         "../data_sources/bears_of_brooks_river_2022.pdf",
+    #         "../data_sources/bears_of_brooks_river_2022_ocred.pdf",
+    #         force_ocr=True,
+    #         output_type="pdf",
+    #         progress_bar=True,
+    #     )
+    #
+    # # Load OCRed PDF
+    # pdf = PyPDFLoader("../data_sources/bears_of_brooks_river_2022_ocred.pdf").load()
+    #
+    # pages_of_general_info = pdf[4:28] + [pdf[34]]
+    # cleaned_pages_of_general_info = [
+    #     page.page_content.replace("\n", "") for page in pages_of_general_info
+    # ]
+    # with open(
+    #     "../scraped_data/general_park_info.json", mode="w", encoding="utf-8"
+    # ) as json_file:
+    #     json.dump(cleaned_pages_of_general_info, json_file)
 
     # Not dealing with this for now.... too complicated to match w/the wiki info; might do later
     # pages_of_adult_bear_bios = pdf[35:88]
@@ -68,42 +68,44 @@ if __name__ == "__main__":
             # --------
             full_title = soup.title.text
             bear_id = full_title.split("|")[0].strip()
-            # body_text = soup.findAll('p')  # still tons of HTML tags left in here. No super easy way to clean up.
-            # body_text = [b.text.replace('\n', '').replace('\xa0', '') for b in body_text]
-            # body_text = [b for b in body_text if not b == '']
-            # body_text = ' '.join(body_text)  # might have to chunk up to ingest into weaviate, but not sure where
+            body_text = soup.findAll('p')  # still tons of HTML tags left in here. No super easy way to clean up.
+            body_text = [b.text.replace('\n', '').replace('\xa0', '') for b in body_text]
+            body_text = [b for b in body_text if not b == '']
+            body_text = ' '.join(body_text)  # might have to chunk up to ingest into weaviate, but not sure where
             # # should do it
-            # bear_wiki_info.append({'id': bear_id, 'body': body_text})
+            bear_wiki_info.append({'name': bear_id, 'bio': body_text})
 
             # ----------
             # | Images |
             # ----------
-            image_counter = 0
-            for link in soup.select("img[src^=http]"):
-                # todo: repopulate whole folder tomo & reindex
-                if image_counter <= 40:
-                    lnk = link["src"]
-                    try:
-                        urllib.request.urlretrieve(
-                            lnk,
-                            f"../scraped_data/bear_wiki_images"
-                            f"/{bear_id.replace(' ', '')}_{image_counter}.jpg",
-                        )
-                        image_counter += 1
-
-                    except URLError:
-                        time.sleep(3)
-                        urllib.request.urlretrieve(
-                            lnk,
-                            f"../scraped_data/bear_wiki_images"
-                            f"/{bear_id.replace(' ', '')}_{image_counter}.jpg",
-                        )
-                        image_counter += 1
+            # image_counter = 0
+            # for link in soup.select("img[src^=http]"):
+            #     # todo: repopulate whole folder tomo & reindex
+            #     if image_counter <= 40:
+            #         lnk = link["src"]
+            #         try:
+            #             urllib.request.urlretrieve(
+            #                 lnk,
+            #                 f"../scraped_data/bear_wiki_images"
+            #                 f"/{bear_id.replace(' ', '')}_{image_counter}.jpg",
+            #             )
+            #             image_counter += 1
+            #
+            #         except URLError:
+            #             time.sleep(3)
+            #             urllib.request.urlretrieve(
+            #                 lnk,
+            #                 f"../scraped_data/bear_wiki_images"
+            #                 f"/{bear_id.replace(' ', '')}_{image_counter}.jpg",
+            #             )
+            #             image_counter += 1
 
     with open(
         "../scraped_data/bear_wiki_info.json", mode="w", encoding="utf-8"
     ) as json_file:
         json.dump(bear_wiki_info, json_file)
+
+    # img = Image.open(r"test.jpg")
 
 
 """ 
@@ -130,6 +132,6 @@ url = 'https://static.wikia.nocookie.net/katmai-bearcams/images/5/5c/DIVER_1_PIC
 
 urllib.request.urlretrieve(url, "test.jpg")
 
-img = Image.open(r"test.jpg")
+# img = Image.open(r"test.jpg")
 img.show()
 """
