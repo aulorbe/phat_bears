@@ -13,8 +13,9 @@ of Brook's River: [Fat Bear Week](https://explore.org/fat-bear-week)...
 Behold the 'bear-y' best show in town...These fat bears strut their stuff with a flair for the fabulous, putting the 
 'plump' in 
 plump-tastic. Visitors flock to witness these roly-poly royalty of the wilderness, as they saunter along the 
-riverbank like four-legged celebrities on a red carpet – or should we say, a salmon-hued runway? From Chunk to 
-Grazer, every bear is a star, and they've mastered the art of looking fabulous while feasting. So, come for the 
+riverbank like four-legged celebrities on a red carpet – or should we say, a salmon-hued runway? From [Chunk](https://explore.org/meet-the-bears#chunk) to 
+[Grazer](https://explore.org/meet-the-bears#grazer), every bear is a star, and they've mastered the art of looking 
+fabulous while feasting. So, come for the 
 awe-inspiring views, stay for the jaw-dropping pounds – it's a spectacle that's sure to make you 'bear-y' happy you 
 came!
 
