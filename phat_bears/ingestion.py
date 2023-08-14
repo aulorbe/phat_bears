@@ -4,17 +4,30 @@ import json
 import os
 
 import weaviate
+<<<<<<< HEAD
+from tenacity import retry, stop_after_attempt, wait_fixed, RetryError
+
+
+
+CLASS_NAME = "GenPhatBears"
+OPENAI_APIKEY = os.environ['OPENAI_APIKEY']
+=======
 
 
 CLASS_NAME = "GenPhatBears"
 WEAVIATE_KEY = os.environ['WEAVIATE_API_KEY']
+>>>>>>> main
 
 
 def instantiate_client():
     return weaviate.Client(
         url="http://0.0.0.0:8080",
         additional_headers={
+<<<<<<< HEAD
+            "X-Openai-Api-Key": OPENAI_APIKEY
+=======
             "X-Openai-Api-Key": WEAVIATE_KEY
+>>>>>>> main
         },
     )
 
@@ -40,15 +53,37 @@ def create_data_objs(data):
     return extended_data_objs
 
 
-if __name__ == "__main__":
-    client = instantiate_client()
-
-    with open("../data/scraped_data/bear_wiki_info.json", "r") as f:
-        wiki_info = json.load(f)
-
-    data_objs = create_data_objs(wiki_info)
-
+<<<<<<< HEAD
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(3))
+def batch_index_objs(data_objs):
     with client.batch().configure(batch_size=5, timeout_retries=2) as batch:
         for data_obj in data_objs:
             # todo: add error handling & status bar so you know when it's finished running
             batch.add_data_object(data_obj, CLASS_NAME)
+
+
+
+if __name__ == "__main__":
+    client = instantiate_client()
+
+    with open("data/scraped_data/bear_wiki_info.json", "r") as f:
+=======
+if __name__ == "__main__":
+    client = instantiate_client()
+
+    with open("../data/scraped_data/bear_wiki_info.json", "r") as f:
+>>>>>>> main
+        wiki_info = json.load(f)
+
+    data_objs = create_data_objs(wiki_info)
+
+<<<<<<< HEAD
+    batch_index_objs(data_objs)
+
+
+=======
+    with client.batch().configure(batch_size=5, timeout_retries=2) as batch:
+        for data_obj in data_objs:
+            # todo: add error handling & status bar so you know when it's finished running
+            batch.add_data_object(data_obj, CLASS_NAME)
+>>>>>>> main
