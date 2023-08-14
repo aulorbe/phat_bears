@@ -2,17 +2,35 @@
 <html>
 <head>
     <title>Flask Search App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
 </head>
 <body>
     <h1>Ask anything about Katmai's Fat Bears!</h1>
+    <p>Current bears in the database: Chunk, Grazer, Walker, Beadnose, Holly, Otis, Popeye, Divot, and 747.</p>
+
     <form action="{{ url_for('search_results') }}" method="GET">
         <input type="text" name="query" placeholder="Enter your question">
         <button type="submit">Submit</button>
     </form>
 
     {% if result %}
-        <h2>Answer for "{{ query }}"</h2>
-        <ul> {{ result }} </ul>
+        <div class="answer-box">
+            <h2>Answer:</h2>
+            <h3>{{ result }}</h3>
+        </div>
     {% endif %}
+
+    <div class="scroll-container">
+        <div class="scroll-content">
+            <img src="static/images/question_a.png" alt="Q1">
+            <img src="static/images/question_b.png" alt="Q2">
+            <img src="static/images/question_c.png" alt="Q3">
+            <img src="static/images/question_d.png" alt="Q4">
+            <img src="static/images/question_e.png" alt="Q5">
+            <img src="static/images/question_f.png" alt="Q6">
+            <img src="static/images/question_g.png" alt="Q7">
+            <img src="static/images/question_h.png" alt="Q8">
+        </div>
+    </div>
 </body>
 </html>

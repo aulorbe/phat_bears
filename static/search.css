@@ -1,0 +1,123 @@
+/* Body styles */
+body {
+    background-image: url('/static/images/water.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh; /* Ensure full viewport height */
+    margin: 0; /* Remove default margin */
+    font-family: Arial;
+    color: #093923;
+}
+
+/* Heading 1 styles */
+h1 {
+    font-size: 36px;
+    color: #093923;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+/* Form styles */
+form {
+    font-size: 36px;
+    color: #093923;
+    font-family: Arial;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+/* Label styles */
+label {
+    color: #093923;
+    font-family: Arial;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+/* Submit button styles */
+button[type="submit"] {
+    background-color: #093923;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin: 5px 5px 10px 10px;
+    font-family: Arial;
+}
+
+/* Change button color on hover */
+button[type="submit"]:hover {
+    background-color: #01615C;
+}
+
+/* Text input styles */
+input[type="text"] {
+    font-family: Arial, sans-serif;
+}
+
+/* Scroll container styles */
+.scroll-container {
+    overflow-x: scroll;
+    white-space: nowrap;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* Scroll content styles */
+.scroll-content {
+    display: inline-block;
+}
+
+/* Scroll content image styles */
+.scroll-content img {
+    max-width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Heading 2 styles */
+h2 {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #03AC13;
+    font-family: Arial;
+    background-color: #E2F4E2;
+    display: inline-block;
+}
+
+/* Heading 3 styles */
+h3 {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 0;
+    color: #03AC13;
+    background-color: #E2F4E2;
+    font-family: Arial;
+}
+
+/* Answer box styles */
+.answer-box {
+    background-color: #E2F4E2;
+    padding: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Paragraph styles */
+p {
+    color: #093923;
+    font-family: Arial;
+    margin-left: 10px;
+    margin-top: 0;
+}

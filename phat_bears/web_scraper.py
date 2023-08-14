@@ -1,3 +1,5 @@
+"""Scrape text data from various web sources to create data objects for future ingestion into Weaviate."""
+
 import json
 
 import requests
@@ -23,7 +25,7 @@ if __name__ == "__main__":
             bear_id = full_title.split("|")[0].strip()
             body_text = soup.findAll(
                 "p"
-            )  # still tons of HTML tags left in here. No super easy way to clean up.
+            )
             body_text = [
                 b.text.replace("\n", "").replace("\xa0", "") for b in body_text
             ]
@@ -35,11 +37,3 @@ if __name__ == "__main__":
             "../data/scraped_data/bear_wiki_info.json", mode="w", encoding="utf-8"
     ) as json_file:
         json.dump(bear_wiki_info, json_file)
-
-
-""" 
-NOTES:
-    - Some wiki URLs contained forward slashes in them, so Python thought they were paths & couldn't retrieve the 
-    images (e.g. https://katmai-bearcams.fandom.com/wiki/902_%22Fifi%22_/_%22Bonsai%22)
-    
-"""

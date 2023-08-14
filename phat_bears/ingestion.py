@@ -1,6 +1,22 @@
+"""Index data objects into Weaviate GenPhatBears class."""
+
 import json
+import os
 
 import weaviate
+
+
+CLASS_NAME = "GenPhatBears"
+WEAVIATE_KEY = os.environ['WEAVIATE_API_KEY']
+
+
+def instantiate_client():
+    return weaviate.Client(
+        url="http://0.0.0.0:8080",
+        additional_headers={
+            "X-Openai-Api-Key": WEAVIATE_KEY
+        },
+    )
 
 
 def split_paragraph(text, chunk_size):
@@ -9,21 +25,9 @@ def split_paragraph(text, chunk_size):
     return chunks
 
 
-if __name__ == "__main__":
-    client = weaviate.Client(
-        url="http://0.0.0.0:8080",
-        additional_headers={
-            "X-Openai-Api-Key": ""
-        },
-    )
-
-    class_name = "GenPhatBears"
-
-    with open("../data/scraped_data/bear_wiki_info.json", "r") as f:
-        wiki_info = json.load(f)
-
+def create_data_objs(data):
     extended_data_objs = []
-    for w in wiki_info:
+    for w in data:
         # Split up text
         text_chunks = split_paragraph(w["bio"], 100)
         text_chunks = [" ".join(t) for t in text_chunks]
@@ -33,9 +37,18 @@ if __name__ == "__main__":
             single_data_obj = {"name": w.get("name"), "bio": t}
             data_objs.append(single_data_obj)
         extended_data_objs.extend(data_objs)
+    return extended_data_objs
+
+
+if __name__ == "__main__":
+    client = instantiate_client()
+
+    with open("../data/scraped_data/bear_wiki_info.json", "r") as f:
+        wiki_info = json.load(f)
+
+    data_objs = create_data_objs(wiki_info)
 
     with client.batch().configure(batch_size=5, timeout_retries=2) as batch:
-        for data_obj in extended_data_objs:
-            batch.add_data_object(data_obj, class_name)
-
-    print("hi")
+        for data_obj in data_objs:
+            # todo: add error handling & status bar so you know when it's finished running
+            batch.add_data_object(data_obj, CLASS_NAME)

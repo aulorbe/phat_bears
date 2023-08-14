@@ -8,7 +8,7 @@ from langchain.chains import ConversationalRetrievalChain
 
 app = Flask(__name__)
 
-app.secret_key = "test"
+app.secret_key = "weaviate-demo"
 
 
 def create_weaviate_client(api_key):

@@ -1,0 +1,71 @@
+/* Body styles */
+body {
+    background-image: url('/static/images/bears.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure full viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+/* Form styles */
+form {
+    display: flex;
+    align-items: center;
+    color: #093923;
+    font-family: Arial;
+}
+
+/* Heading styles */
+h1 {
+    color: #093923; /* Replace with your desired color code */
+    font-family: Arial;
+}
+
+/* Label styles */
+label {
+    color: #093923; /* Replace with your desired color code */
+    font-family: Arial;
+}
+
+/* Container styles */
+.container {
+    background-color: rgba(211, 211, 211, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    text-align: center;
+}
+
+/* Form container styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Submit button styles */
+button[type="submit"] {
+    background-color: #093923;
+    color: white; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin: 5px 5px 10px 10px; /* Increase left margin to 20px */
+    font-family: Arial;
+}
+
+/* Change button color on hover */
+button[type="submit"]:hover {
+    background-color: #01615C; /* Change to a slightly different color on hover */
+}
+
+/* Text input styles */
+input[type="text"] {
+    font-family: Arial, sans-serif; /* Use Arial font or fallback sans-serif */
+}
