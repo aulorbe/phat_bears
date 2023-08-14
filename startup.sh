@@ -17,7 +17,21 @@ PYTHON_FILES=(
     "phat_bears/ingestion.py"
 )
 
-  # Loop through each Python script and run it
+# Install dependencies from requirements.txt
+echo "Installing dependencies..."
+pip install -r requirements.txt
+
+# Check if pip install was successful
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to install dependencies."
+    exit 1
+fi
+
+# Initialize progress variables
+total_scripts=${#PYTHON_FILES[@]}
+current_script=1
+
+# Loop through each Python script and run it
 for PYTHON_SCRIPT in "${PYTHON_FILES[@]}"; do
     # Check if the Python script file exists
     if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -25,11 +39,24 @@ for PYTHON_SCRIPT in "${PYTHON_FILES[@]}"; do
         exit 1
     fi
 
-    # Run the Python script
-    echo "Running $PYTHON_SCRIPT ..."
-    $PYTHON_EXECUTABLE "$PYTHON_SCRIPT"
-    echo "$PYTHON_SCRIPT finished with exit code: $?"
+    # Display progress bar
+    echo -n -e "\n\n Running script $current_script of $total_scripts, $PYTHON_SCRIPT: \n["
+    ( $PYTHON_EXECUTABLE "$PYTHON_SCRIPT" ) &
+
+    # Print script completion message
+    wait $!
+    echo -en "\r["
+    for ((i = 0; i < 20; i++)); do
+        echo -en "="
+    done
+    echo -en "]"
+
+    # Increment current script count
+    current_script=$((current_script + 1))
 done
+
+# Clear progress bar
+echo -e "\r\c"
 
 # Exit successfully
 exit 0
