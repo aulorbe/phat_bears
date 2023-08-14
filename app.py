@@ -28,7 +28,7 @@ def create_llm(api_key):
 def create_retriever(client):
     return Weaviate(
         client=client, index_name="GenPhatBears", text_key="bio"
-    ).as_retriever()
+    ).as_retriever(k=100)
 
 
 def get_qa():

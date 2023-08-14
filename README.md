@@ -11,6 +11,7 @@ Ensure you have Docker installed & it's up and running.
 Run `docker-compose up` to get this demo's Weaviate engine up and running with the correct configs.
 
 ### Populating your Weaviate engine
+** need a paid openai key
 Run `export OPENAI_APIKEY=<your API key>` to set the environment variable necessary for Weaviate to work.
 Run `echo $OPENAI_APIKEY` to ensure it worked (you'll see the key in your terminal if it worked.)
 
