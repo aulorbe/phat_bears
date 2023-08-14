@@ -31,7 +31,7 @@ Some fun questions include:
 - "What is `the office`?"
   - You can follow up with things like "Is there anything else?"
 - "Where is the best place for fishing?"
-  - You can follow up with: "What about the jacuzzi?" or "Does 812 like the jacuzzi or the office better?"
+  - You can follow up with: "What about the jacuzzi?" or "Does Holly like the jacuzzi or the office better?"
 - "How many offspring does Grazer have?"
   - You can follow up with: "What are their identities?"
 
