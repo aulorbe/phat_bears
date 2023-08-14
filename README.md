@@ -56,7 +56,7 @@ Confirm the variable creation worked by running `echo $OPENAI_APIKEY` in your te
 value of your API key. If it doesn't, go back and troubleshoot. 
 
 ### Run the startup script
-**Note:**  In terminal, run `chmod +x startup.sh` to ensure you permissions to run the script.
+**Note:**  In terminal, run `chmod +x startup.sh` to ensure you have permissions to run the script.
 
 Run `./startup.sh` in your terminal. 
 
@@ -74,7 +74,7 @@ following order:
 ## 3. Run the Flask app
 Once your Weaviate engine has all the data in it, you're ready to go! 
 
-Start the app by running `flask --app app run` in your terminal window.
+Start the app by running `flask --app app run` in your terminal window from the root directory.
 
 You'll be prompted to input your OpenAI API key. 
 
