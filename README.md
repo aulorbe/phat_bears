@@ -1,24 +1,65 @@
-# phat_bears
+# Meet the Phattest Bears Around
+Each year at Katmai National Park, there is a contest of truly _epic_ proportions...
 
-Follow the sections in order to get the app up and running. Yay Fat Bears! 
 
-## Environment
-In a virtual environment of your choice, from the root directory, run `pip install -r requirements.txt`.
+Nestled in the lush embrace of [Katmai National Park](https://www.nps.gov/katm/index.htm), a heavyweight gathering 
+like no other unfolds along the banks 
+of Brook's River: [Fat Bear Week](https://explore.org/fat-bear-week)...
 
-## Weaviate component
-Ensure you have Docker installed & it's up and running. 
+![Bears on the lip of Brooks River](static/images/lip.jpeg)
+*Picture taken by me! Fat Bears on the 'lip' at Brooks River*
 
-Run `docker-compose up` to get this demo's Weaviate engine up and running with the correct configs.
 
-### Populating your Weaviate engine
-<<<<<<< HEAD
-** need a paid openai key
-Run `export OPENAI_APIKEY=<your API key>` to set the environment variable necessary for Weaviate to work.
-Run `echo $OPENAI_APIKEY` to ensure it worked (you'll see the key in your terminal if it worked.)
+Behold the 'bear-y' best show in town...These fat bears strut their stuff with a flair for the fabulous, putting the 
+'plump' in 
+plump-tastic. Visitors flock to witness these roly-poly royalty of the wilderness, as they saunter along the 
+riverbank like four-legged celebrities on a red carpet – or should we say, a salmon-hued runway? From Chunk to 
+Grazer, every bear is a star, and they've mastered the art of looking fabulous while feasting. So, come for the 
+awe-inspiring views, stay for the jaw-dropping pounds – it's a spectacle that's sure to make you 'bear-y' happy you 
+came!
 
-In terminal, run `chmod +x startup.sh` to ensure you can run the necessary Bash script.
+## What Does This App Demonstrate?
 
-Then run `./startup.sh` (in terminal). Alternatively, you can manually run the python scripts in the `phat_bears` dir,
+This app shows demonstrates a Question-Answer chatbot, using Weaviate as the backend vector database & storing chat 
+history to enhance user experience.
+
+Your Weaviate index will be filled with user-generated data about notable Fat Bears who live in Katmai National Park. 
+With this data as your knowledge store, can ask the chatbot anything about your favorite bears!
+
+Some fun questions include: 
+- "What is `the office`?"
+  - You can follow up with things like "Is there anything else?"
+- "Where is the best place for fishing?"
+  - You can follow up with: "What about the jacuzzi?" or "Does 812 like the jacuzzi or the office better?"
+- "How many offspring does Grazer have?"
+  - You can follow up with: "What are their identities?"
+
+  
+
+# Running the App
+
+## 1. Spin up Weaviate
+Note: Ensure you have [Docker](https://docs.docker.com/engine/install/) installed and running. 
+
+In terminal, run `docker-compose up` to get this demo's Weaviate engine up and running with the correct configs.
+
+## 2. Populate Weaviate
+**Note:** You will need a _paid_ OpenAI account for this step due to rate-limiting.
+
+### Set the OpenAI environment variable
+
+In terminal, run `export OPENAI_APIKEY=<your API key>` to set your OpenAI API key to the `OPENAI_APIKEY` environment 
+variable.
+
+Confirm the variable creation worked by running `echo $OPENAI_APIKEY` in your terminal. This should print out the 
+value of your API key. If it doesn't, go back and troubleshoot. 
+
+### Run the startup script
+**Note:**  In terminal, run `chmod +x startup.sh` to ensure you permissions to run the script.
+
+Run `./startup.sh` in your terminal. 
+
+Alternatively, you can manually run the python scripts in the `phat_bears` dir,
 in the 
 following order:
 - `gen_schema.py`
@@ -28,44 +69,19 @@ following order:
 (There is an example of the scraped data in `data/scraped_data`, if you want to see the expected output and/or use 
   that JSON file instead of running `web_scraper.py`.)
 
-You can navigate to `https://console.weaviate.cloud/query` and execute some GraphQL queries to your documents 
-trickling in (you'll be prompted to make an account, if you haven't already).
 
-Sample GraphQL query you can use:
+## 3. Run the Flask app
+Once your Weaviate engine has all the data in it, you're ready to go! 
 
-```
-{
-  Get{
-    GenPhatBears(
-      nearText: {
-        concepts: ["bear"],
-      	
-      }
-      limit: 5
-      where: {
-        path: ["name"],
-        operator: Equal,
-        valueText: "480 Otis"
-      }
-    ){
-      name
-      bio
-    }
-  }
-}
-```
-
-## Flask component
-Once your Weaviate engine has all the data in it, you're ready to go! Start the app by running `flask --app app run` 
-on terminal.
+Start the app by running `flask --app app run` in your terminal window.
 
 You'll be prompted to input your OpenAI API key. 
-<<<<<<< HEAD
 
-Note: This chat bot stores your chat history! This means that you can issue follow-up questions like "Tell me more 
-about him," and the app will know which bear you're referencing.
+**Note:** Your API key will expire after ~30 minutes. When this happens, the app will 
+appear broken in the UI. All you need to do is go back to `http://127.0.0.1:5000/` and enter your API key again. 
 
-### Sample questions to inspire you!
-- Who is Otis?
-- Why is Otis so popular?
-- Does Holly have children? If so, what are their identification numbers?
+
+![Audrey in a sea plane about to enter Katmai](static/images/audrey.jpeg)
+*A very excited Audrey in a sea plane about to enter Katmai & see the Fat Bears*
+
+# Have fun!
