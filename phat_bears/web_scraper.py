@@ -12,7 +12,11 @@ if __name__ == "__main__":
     # -------------------
     bear_wiki_info = []
 
+<<<<<<< HEAD
     with open("data/data_sources/wiki_links.txt", "r") as f:
+=======
+    with open("../data/data_sources/wiki_links.txt", "r") as f:
+>>>>>>> main
         for url in f:
             url = url.strip()
             page = requests.get(url)  # add error handling here
@@ -34,6 +38,10 @@ if __name__ == "__main__":
             bear_wiki_info.append({"name": bear_id, "bio": body_text})
 
     with open(
+<<<<<<< HEAD
             "data/scraped_data/bear_wiki_info.json", mode="w", encoding="utf-8"
+=======
+            "../data/scraped_data/bear_wiki_info.json", mode="w", encoding="utf-8"
+>>>>>>> main
     ) as json_file:
         json.dump(bear_wiki_info, json_file)

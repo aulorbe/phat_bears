@@ -11,6 +11,7 @@ Ensure you have Docker installed & it's up and running.
 Run `docker-compose up` to get this demo's Weaviate engine up and running with the correct configs.
 
 ### Populating your Weaviate engine
+<<<<<<< HEAD
 ** need a paid openai key
 Run `export OPENAI_APIKEY=<your API key>` to set the environment variable necessary for Weaviate to work.
 Run `echo $OPENAI_APIKEY` to ensure it worked (you'll see the key in your terminal if it worked.)
@@ -59,6 +60,7 @@ Once your Weaviate engine has all the data in it, you're ready to go! Start the 
 on terminal.
 
 You'll be prompted to input your OpenAI API key. 
+<<<<<<< HEAD
 
 Note: This chat bot stores your chat history! This means that you can issue follow-up questions like "Tell me more 
 about him," and the app will know which bear you're referencing.
@@ -67,5 +69,3 @@ about him," and the app will know which bear you're referencing.
 - Who is Otis?
 - Why is Otis so popular?
 - Does Holly have children? If so, what are their identification numbers?
-
-
