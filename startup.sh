@@ -4,6 +4,12 @@
 
 PYTHON_EXECUTABLE="python3"
 
+# Prompt the user for API Key
+read -p "Please enter your API Key: " OPENAI_APIKEY
+
+# Set the API Key as an environment variable
+export OPENAI_APIKEY
+
 
 # Check if the Python executable is defined
 if [ -z "$PYTHON_EXECUTABLE" ]; then

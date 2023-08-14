@@ -8,7 +8,7 @@ from tenacity import retry, stop_after_attempt, wait_fixed, RetryError
 
 
 CLASS_NAME = "GenPhatBears"
-OPENAI_APIKEY = os.environ['OPENAI_APIKEY']
+OPENAI_APIKEY = os.environ.get("OPENAI_APIKEY")
 
 
 def instantiate_client():
