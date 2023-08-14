@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Key Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Your OpenAI API Key</h1>
+        <div class="form-container">
+            <form action="/process_api_key" method="POST">
+                <label for="api_key">API Key:&nbsp;</label>
+                <input type="text" id="api_key" name="api_key" placeholder="Enter your API key">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
